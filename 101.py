@@ -29,3 +29,15 @@ marathon_2017_clean['Senior'] = marathon_2017_clean.Age > 60
 
 # Select runners from Kennay by conditional expression
 marathon_2017_clean['Year'] = '2017'
+
+# Select the column by dot notation
+names = marathon_2017_clean.Name
+
+# Display names
+print(names)
+
+# Select the column by brackets notation
+official_time = marathon_2017_clean['Official Time']
+
+# Display Official Time
+print(official_time)
