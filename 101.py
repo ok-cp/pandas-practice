@@ -41,3 +41,35 @@ official_time = marathon_2017_clean['Official Time']
 
 # Display Official Time
 print(official_time)
+
+
+##################
+
+# 1. User defined Function
+# Define function name to_seconds
+# split(): 구분자를 기준으로 n개로 나눈다, expand=True이면 여러 컬럼, False이면 1개 컬럼에 리스트
+def to_seconds(record):
+ hms = record.str.split(':', n = 2, expand = True)
+ return hms[0].astype(int) * 3600  + hms[1].astype(int) * 60 + hms[2].astype(int)
+
+# Call user defined function to_seconds
+marathon_2017['Official Time Sec'] = to_seconds(marathon_2017['Official Time'])
+
+# Display updated data frame with .head() method
+print(marathon_2017.head())
+
+
+# 2. Pre defined Function
+# Import Numpy Library and call it as np
+import numpy as np
+
+# Convert using pandas to_timedelta method
+marathon_2017['Official Time Sec'] = pd.to_timedelta(marathon_2017['Official Time'])
+
+# Convert time to seconds value using astype method
+marathon_2017['Official Time New Sec'] = marathon_2017['Official Time Sec'].astype('m8[s]').astype(np.int64)
+
+# Display updated data frame with .head() method
+print(marathon_2017.head())
+
+####################
