@@ -76,9 +76,9 @@ print(marathon_2017.head())
 
 
 # Load the CSV files "marathon_results_2015 ~ 2017.csv" under "data" folder
-marathon_2015 = pd.read_csv("./data/marathon_results_2015.csv")
-marathon_2016 = pd.read_csv("./data/marathon_results_2016.csv")
-marathon_2017 = pd.read_csv("./data/marathon_results_2017.csv")
+marathon_2015 = pd.read_csv("./marathon_results_2015.csv")
+marathon_2016 = pd.read_csv("./marathon_results_2016.csv")
+marathon_2017 = pd.read_csv("./marathon_results_2017.csv")
 
 # Merge 2015, 2016 and 2017 files into marathon_2015_2017 file index by Official Time
 marathon_2015_2017 = pd.concat([marathon_2015, marathon_2016, marathon_2017], ignore_index=True, sort=False).set_index('Official Time')
@@ -88,18 +88,18 @@ marathon_2015_2017 = pd.concat([marathon_2015, marathon_2016, marathon_2017], ig
 print(marathon_2015_2017.describe())
 
 # Sort data by Age 
-marathon_2015_2017.__________(by=[___________])
+marathon_2015_2017.sort_values(by=['Age'])
 
 # Display the first five initial rows using the .head() method
-print(marathon_2015_2017._______)
+print(marathon_2015_2017.head())
 
 # Sort data Descending order by Age 
-marathon_2015_2017.__________(by=__________, ascending=______)
+marathon_2015_2017.sort_values(by=['Age'], ascending=False)
 
 # Display the first five initial rows using the .head() method
-print(marathon_2015_2017._______)
+print(marathon_2015_2017.head())
 
 # Save to CSV file "marathon_2015_2017.csv" with header
-marathon_2015_2017._________("./data/marathon_2015_2017.csv", index = None, header=_____)
+marathon_2015_2017.to_csv("./marathon_2015_2017.csv", index = None, header=True)
 
 ######
