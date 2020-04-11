@@ -8,33 +8,42 @@ marathon_2015_2017 = pd.read_csv("./data/marathon_2015_2017.csv")
 import matplotlib.pyplot as plt
 
 # Select runners from Age 18 to 60 by conditional expression
-runner_1860 = marathon_2015_2017[marathon_2015_2017.Age.____(______(20,60))]
+runner_1860 = marathon_2015_2017[marathon_2015_2017.Age.isin(range(18,60))]
+
 # Create runner_1860_counting Dataframe with counting by Age
-runner_1860_counting = runner_1860['Age'].__________
+runner_1860_counting = runner_1860['Age'].value_counts()
+
 # Store index of runner_1860_counting into x
-x = runner_1860_counting.______
+x = runner_1860_counting.index
+
 # Conver x values to String in order to avoid int sorting
 x = [str(i) for i in x]
+
 # Store values of runner_1860_counting into y
-y = runner_1860_counting.______
+y = runner_1860_counting.values
 # Calculate ratio and accumulated ratio
-ratio = y / y._____
-ratio_sum = ratio._______
+ratio = y / y.sum()
+ratio_sum = ratio.cumsum()
 
 # Configure figure size
-fig, barChart = plt.________(figsize=(20,10))
+fig, barChart = plt.subplots(figsize=(20,10))
 # Creae bar Chart
-barChart.____(x, y)
+barChart.bar(x, y)
 # Creae line Chart
-lineChart = barChart.______
-lineChart.plot(x, _______, _____, _____=0.5)
+lineChart = barChart.twinx()
+lineChart.plot(x, ratio_sum, '-ro', alpha=0.5)
+
 # Creae right side labels
 ranges = lineChart.get_yticks()
-lineChart.___________(['{:,.1%}'.format(x) for x in ______])
+lineChart.set_yticklabels(['{:,.1%}'.format(x) for x in ranges])
+
+
 # Creae annotations on line chart
-ratio_sum_percentages = ['{0:.0%}'.format(x) for x in ______]
-for i, txt in ________(ratio_sum_percentages):
-    lineChart.________(txt, (x[i], _______[i]), fontsize=14)    
+ratio_sum_percentages = ['{0:.0%}'.format(x) for x in ratio_sum]
+
+for i, txt in enumerate(ratio_sum_percentages):
+    lineChart.annotate(txt, (x[i], ratio_sum[i]), fontsize=14)    
+
 # Generate labels and title
 barChart.set_xlabel('Age', fontdict= {'size':16})
 barChart.set_ylabel('Number of runner', fontdict= {'size':16})
