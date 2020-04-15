@@ -8,12 +8,12 @@ marathon_2015_2017 = pd.read_csv("./marathon_2015_2017.csv")
 import matplotlib.pyplot as plt
 
 # Merge 2015, 2016 and 2017 files into marathon_2015_2017 file index by Official Time
-record = pd.________(marathon_2015_2017,_______=['5K',  '10K',  '15K',  '20K', 'Half',  '25K',  '30K',  '35K',  '40K',  'Official Time']).sort_values(by=['Official Time'])
+record = pd.DataFrame(marathon_2015_2017,columns=['5K',  '10K',  '15K',  '20K', 'Half',  '25K',  '30K',  '35K',  '40K',  'Official Time']).sort_values(by=['Official Time'])
 
 # Insert Rank column
-record.insert(0, 'Rank', ______(1, 1 + len(record)))
+record.insert(0, 'Rank', range(1, 1 + len(record)))
 # Select Top 100
-top100 = record[_______]
+top100 = record[0:101]
 # Set Rank as x
 xData = top100.Rank
 # Set yData_full, yData_10K, yData_20K, yData_30K
@@ -27,10 +27,10 @@ import matplotlib.pyplot as plt
 # Configure figure size
 plt.figure(figsize=(20,10))
 # plot the data yData_full, yData_10K, yData_20K, yData_30K
-plt.____(xData, yData_full)
-plt.____(xData, yData_10K)
-plt.____(xData, yData_20K)
-plt.____(xData, yData_30K)
+plt.plot(xData, yData_full)
+plt.plot(xData, yData_10K)
+plt.plot(xData, yData_20K)
+plt.plot(xData, yData_30K)
 
 # display the plot
 plt.show()
