@@ -5,15 +5,15 @@ import pandas as pd
 marathon_2015_2017 = pd.read_csv("./marathon_2015_2017.csv")
 
 # Import pyplot as a alias 'plt'
-import matplotlib.______ as plt
+import matplotlib.pyplot as plt
 
 # Merge 2015, 2016 and 2017 files into marathon_2015_2017 file index by Official Time
-record = pd._______(marathon_2015_2017,columns=['5K',  '10K',  '15K',  '20K', 'Half',  '25K',  '30K',  '35K',  '40K',  'Official Time']).sort_values(by=['Official Time'])
+record = pd.DataFrame(marathon_2015_2017,columns=['5K',  '10K',  '15K',  '20K', 'Half',  '25K',  '30K',  '35K',  '40K',  'Official Time']).sort_values(by=['Official Time'])
 
 # Insert Rank column
-record._______(0, 'Rank', range(1, 1 + len(record)))
+record.insert(0, 'Rank', range(1, 1 + len(record)))
 # Select Top 100
-top100 = record[______]
+top100 = record[0:101]
 # Set Rank as x
 xData = top100.Rank
 # Set yData_full, yData_10K, yData_20K, yData_30K
@@ -27,10 +27,10 @@ import matplotlib.pyplot as plt
 # Configure figure size
 plt.figure(figsize=(20,10))
 # plot the data yData_full, yData_10K, yData_20K, yData_30K
-plt.____(xData, yData_full, color='blue', linewidth=4, linestyle='-', marker='x', label='Full time')
-plt.____(xData, yData_10K, color='red', linewidth=3, linestyle='--', marker='s', label='10K time')
-plt.____(xData, yData_20K, color='orange', linewidth=2, linestyle='-.', marker='o', label='20K time')
-plt.____(xData, yData_30K, color='green', linewidth=1, linestyle=':', marker='d', label='30K time')
+plt.plot(xData, yData_full, color='blue', linewidth=4, linestyle='-', marker='x', label='Full time')
+plt.plot(xData, yData_10K, color='red', linewidth=3, linestyle='--', marker='s', label='10K time')
+plt.plot(xData, yData_20K, color='orange', linewidth=2, linestyle='-.', marker='o', label='20K time')
+plt.plot(xData, yData_30K, color='green', linewidth=1, linestyle=':', marker='d', label='30K time')
 
 # Add a title
 plt.title("Top 100 ranker's records")
@@ -42,7 +42,7 @@ plt.xlabel("Rank")
 plt.ylabel("Time(Second)")
 
 # Legend
-plt.______
+plt.legend()
 
 # Style : ggplot, fivethirtyeight, seaborn, default
 plt.style.use('seaborn')
