@@ -22,33 +22,13 @@ record_list = record.values.tolist()
 xData = [5, 10, 15, 20, 21.098, 25, 30, 35, 40, 42.195 ]
 
 fig = Figure(figsize=(5,4), dpi=100)
-ax = fig._________(111)
+ax = fig.add_subplot(111)
 t_xdata, t_ydata = [], []
-ax._______(0, 45)
-ax._______(0, 10000)
+# Set Limit x,y 
+ax.set_xlim(0, 45)
+ax.set_ylim(0, 10000)
 dn, = ax.plot([], [], 'ro')
 t_a = 0
-
-def seconds_to_hhmmss(seconds):
-    hours = seconds // (60*60)
-    seconds %= (60*60)
-    minutes = seconds // 60
-    seconds %= 60
-    return "%02i:%02i:%02i" % (hours, minutes, seconds)
-
-def init():
-    ax._______(0, 45)
-    ax._______(0, 10000)
-    return dn, 
-
-def animateFrame(frame):
-    t_a = int(t_aSpbox.get()) -1
-    t_x = xData[________]
-    t_y = ________[t_a][_______]
-    t_xdata._______(t_x)
-    t_ydata._______(t_y)  
-    dn.set_data(t_xdata, t_ydata) 
-    return dn,
 
 def update(): 
     t_a = int(t_aSpbox.get()) -1
@@ -64,6 +44,7 @@ def update():
 
     fig.canvas.________
 
+    
 #main
 main = Tk()
 main.title("Marathon Records")
@@ -83,7 +64,7 @@ t_aLabel.grid(row=1,column=0)
 
 Button(main,text="Run",width=20,height=3,command=lambda:update()).grid(row=1, column=2, columnspan=2, rowspan=1)
 
-canvas = __________(fig, main)
-canvas._________.grid(row=2,column=0,columnspan=3) 
+canvas = FigureCanvasTkAgg(fig, main)
+canvas.get_tk_widget().grid(row=2,column=0,columnspan=3) 
 
-main._________
+main.mainloop()
