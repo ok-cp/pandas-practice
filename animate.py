@@ -2,10 +2,10 @@
 303. Animation
 """
 import numpy as np
-from ________ import *
+from tkinter import *
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.animation import _________
+from matplotlib.animation import FuncAnimation
 import math
 # Import pandas as a alias 'pd'
 import pandas as pd
@@ -17,7 +17,7 @@ marathon_2015_2017 = pd.read_csv("./marathon_2015_2017.csv")
 record = pd.DataFrame(marathon_2015_2017,columns=['5K',  '10K',  '15K',  '20K', 'Half',  '25K',  '30K',  '35K',  '40K',  'Official Time']).sort_values(by=['Official Time'])
 
 # Dataframe to List
-record_list = record.values.________
+record_list = record.values.tolist()
 
 xData = [5, 10, 15, 20, 21.098, 25, 30, 35, 40, 42.195 ]
 
