@@ -30,19 +30,33 @@ ax.set_ylim(0, 10000)
 dn, = ax.plot([], [], 'ro')
 t_a = 0
 
+def seconds_to_hhmmss():
+
+def init():
+
+def animateFrame():
+
+
+
+# Button Update 
 def update(): 
     t_a = int(t_aSpbox.get()) -1
-    ani = _________(fig, animateFrame, frames=np.linspace(0, len(xData)-1, len(xData)),
+    # numpy linspace ef. range
+    ani = FuncAnimation(fig, animateFrame, frames=np.linspace(0, len(xData)-1, len(xData)),
                         init_func=init, blit=True)
     ax.set_xlabel('Distance(km)')
     ax.set_ylabel('Time(Second)')
     ax.set_title('Records of runner #'+str(t_a + 1)) 
     
-    record_list_format = [seconds_to_hhmmss(s) for s in record_list[t_a]]
-    for i, txt in _________(record_list_format):
-        ax.________(txt, (xData[i], record_list[t_a][i]), fontsize=8)  
 
-    fig.canvas.________
+    record_list_format = [seconds_to_hhmmss(s) for s in record_list[t_a]]
+
+    # insert annotate
+    for i, txt in enumerate(record_list_format):
+        ax.annotate(txt, (xData[i], record_list[t_a][i]), fontsize=8)  
+
+    # canvas draw()
+    fig.canvas.draw()
 
     
 #main
