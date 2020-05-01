@@ -24,15 +24,27 @@ xData = [5, 10, 15, 20, 21.098, 25, 30, 35, 40, 42.195 ]
 fig = Figure(figsize=(5,4), dpi=100)
 ax = fig.add_subplot(111)
 t_xdata, t_ydata = [], []
+
 # Set Limit x,y 
 ax.set_xlim(0, 45)
-ax.set_ylim(0, 10000)
+ax.(0, 10000)
 dn, = ax.plot([], [], 'ro')
 t_a = 0
 
-def seconds_to_hhmmss():
+# covert sec to hhmmss
+def seconds_to_hhmmss(seconds):
+    hours = seconds // (60*60)
+    seconds %= (60*60)
+    minutes = seconds // 60
+    seconds %= 60
+    return "%02i:%02i:%02i" % (hours, minutes, seconds)
+
 
 def init():
+    # Set Init Limit x,y 
+    ax.set_xlim(0, 45)
+    ax.set_ylim(0, 10000)
+    return dn, 
 
 def animateFrame():
 
