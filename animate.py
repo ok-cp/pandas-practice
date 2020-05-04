@@ -27,7 +27,7 @@ t_xdata, t_ydata = [], []
 
 # Set Limit x,y 
 ax.set_xlim(0, 45)
-ax.(0, 10000)
+ax.set_ylim(0, 10000)
 dn, = ax.plot([], [], 'ro')
 t_a = 0
 
@@ -46,8 +46,14 @@ def init():
     ax.set_ylim(0, 10000)
     return dn, 
 
-def animateFrame():
-
+def animateFrame(frame):
+    t_a = int(t_aSpbox.get()) -1
+    t_x = xData[int(frame)]
+    t_y = record_list[t_a][int(frame)]
+    t_xdata.append(t_x)
+    t_ydata.append(t_y)
+    dn.set_data(t_xdata, t_ydata)
+    return dn,
 
 
 # Button Update 
